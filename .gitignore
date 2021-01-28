@@ -6,4 +6,6 @@ npm-debug.log
 node_modules
 dev
 dist
-.Rproj
+*.Rproj
+!access-story.Rproj
+.Rproj.user

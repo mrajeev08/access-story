@@ -24,6 +24,12 @@ Run `npm start` to fire up the project server. `control + c` to stop.
 
 Any changes to the `src/` folder will trigger live reload.
 
+## Read only folders
+
+-docs/ (built by `make github` or make `npm2gh`)
+-dist/ (built by `npm run deploy`)
+
+
 ## HTML
 
 **Where it goes:** `src/html/partials/story/`.
