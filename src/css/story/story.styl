@@ -1,1 +1,435 @@
 /* CUSTOM STORY STYLE */
+/*From here for now:*/
+/*https://github.com/the-pudding/eu-regions/blob/master/src/css/story/story.styl*/
+@import "../utils/helpers"
+
+secondary = #f1f1f1
+/*min75col = #C75DAB
+min90col = #D691C1
+min100col = #E4C1D9
+min110col = #A7D3D4
+min125col = #42B7B9
+min600col = #009B9E*/
+fivepercgdp = #563C8F
+
+min75col = #c51b7d
+min90col = #e9a3c9
+min100col = #fde0ef
+min110col = #e6f5d0
+min125col = #a1d76a
+min600col = #4d9221
+
+h2
+	font-family 'Playfair Display'
+	font-size 24px
+	margin-top 0rem
+    text-align center
+
+.filler
+	margin 0 auto
+	padding 1rem 1rem 1.5rem 1rem
+	max-width 40rem
+	ol
+		list-style-position outside
+		li
+			//font-family 'Roboto'
+			margin-left 3rem
+			//font-size 14px
+			font-size 16px
+			margin-bottom 1rem
+
+
+
+.smallmap
+	max-width 800px
+	margin auto
+
+.twinmap-container
+	width 100%
+	max-width 70rem
+	margin auto
+	display flex
+	flex-wrap wrap
+
+#threshold110
+	@media (max-width: 500px)
+		text
+			display none
+
+.twinmap
+	width 50%
+	position relative
+	display flex
+	flex-direction column
+	margin-bottom 2rem
+	@media (max-width:768px)
+		margin-bottom 2rem
+
+	.twinmap-title
+		//position absolute
+		//top 8px
+		//left 0px
+		//background-color rgba(255,255,255,0.9)
+		padding 5px
+		font-size 16px
+		font-weight 500
+		//right 0px
+		text-align center
+		margin 0 auto
+		order 1
+	img
+		order 2
+
+/* STICKY SCROLL */
+#scrolly-side .scrolly
+	display flex
+	margin-top 2rem
+
+	& > *
+		flex 1
+
+	article
+		display flex
+		flex-direction column
+		align-items center
+		justify-content center
+
+		padding-right 25px
+		padding-left 25px
+		max-width 30rem
+		@media (max-width:1000px)
+			max-width 20rem
+		@media (max-width:768px)
+			max-width 25rem
+			margin 0 auto
+
+
+		.step
+			align-self center
+			min-height 100vh
+			margin-bottom 1rem
+			opacity 0.5
+			@media (max-width:768px)
+				min-height auto
+				margin-bottom 90vh
+			&:last-of-type
+				margin-bottom 0
+				@media (max-width:768px)
+					min-height 100vh
+			&.is-active
+				opacity 1
+			&.is-active p, &.is-active div
+				background-color secondary
+				@media (max-width:768px)
+					background-color rgba(255,255,255,.95)
+			p
+				margin 0
+				padding 1rem
+				border-left 3px solid #a5a6b3
+				//-webkit-font-smoothing auto
+				&:first-of-type
+					@media (max-width:768px)
+						border-left none
+						border-top 3px solid #a5a6b3
+				&:not(:first-of-type)
+					@media (max-width:768px)
+						border-left none
+						border-top none
+			div
+				margin 0
+				padding-left 1rem
+				padding-left 1rem
+				padding-top 0
+				padding-bottom 0
+				border-left 3px solid #a5a6b3
+				@media (max-width:768px)
+					border-left none
+
+	figure.sticky
+		position sticky
+		width 100%
+		height 100vh
+		margin 0
+		top 0
+		left 0
+		transform translate3d(0,0,0)
+
+@media only screen and (max-width: 768px)
+	#scrolly-side .scrolly
+		display inline
+
+	#scrolly-side .scrolly figure.sticky
+		width 100vw
+		z-index -10
+
+	.twinmap
+		width 100%
+
+
+/* MAP */
+.mapcontainer
+	position sticky
+	top 0
+	height 100vh
+
+.graticule {
+  fill: none;
+  stroke: #cccccc;
+  stroke-width: .5px;
+}
+
+.land {
+	fill: #f1f1f1;
+}
+
+.average-line-two
+	stroke-width 1px
+	stroke #666
+
+
+.region
+	stroke #ffffff
+	stroke-width 0.5px
+	transition fill 1000ms ease-in-out
+	cursor pointer
+
+.country {
+	stroke #444
+	stroke-width 1px
+}
+
+.capital
+	stroke #ffffff
+	stroke-width 1px
+	fill #333333
+	fill-opacity 1
+	pointer-events none
+
+.other-capital
+	fill #b7b7b7
+
+.chorolegend text.label, .toplegend text.label, .label-outside
+	font-size 12px
+	font-weight 600
+
+.toplegend text.label, #average-label
+	fill black
+	opacity 0.8
+	/*filter url(#textshadow)*/
+	text-shadow: -2px -2px white, -2px 2px white, 2px 2px white, 2px -2px white, -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white
+	font-weight 600
+	@media (max-width: 450px)
+		font-size 12px
+		font-weight 500
+
+#title
+	font-size 24px
+	text-anchor middle
+	font-weight 500
+	transform translate(0,-5px)
+	fill black
+	opacity 0.8
+	/*filter url(#textshadow)*/
+	text-shadow: -2px -2px white, -2px 2px white, 2px 2px white, 2px -2px white, -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white
+	font-weight 600
+	@media (max-width:550px)
+		font-size 18px
+	@media (max-width:400px)
+		font-size 16px
+	@media (max-width:375px)
+		font-size 15px
+
+rect.swatch
+	stroke #ffffff
+	stroke-width 1px
+
+.y-axis path
+	display none
+
+.y-axis .tick image
+	transform translate(-20px, -4px)
+	@media (max-width:768px)
+		transform translate(-20px, -5px)
+
+
+.y-axis .tick line
+	stroke #eeeeee
+
+.highlight, .textlegend
+	border-radius 4px
+	padding-right 3px
+	padding-left 3px
+	padding-top 2px
+	padding-bottom 2px
+	color #000000
+	cursor pointer
+	font-family 'Roboto'
+	font-size 14px
+	font-weight 500
+	border-bottom 2px solid #a5a6b3
+	padding 2px 7px
+	margin 0px 1px
+	white-space nowrap
+	-webkit-font-smoothing antialiased
+	-moz-osx-font-smoothing grayscale
+	@media (max-width:768px)
+		background-color #f7f7f7
+		color black
+
+.textlegend.Budapest
+	background-color #b72542
+	color #ffffff
+	border none
+	padding-bottom 4px
+
+
+.highlight
+	background-color #dddddd
+	background-color white
+	font-family 'Roboto'
+	font-size 14px
+	font-weight 500
+	border-bottom 2px solid #a5a6b3
+	padding 2px 7px
+	margin 0px 1px
+	white-space nowrap
+	&:hover
+		background #bbb
+		color black
+
+.textlegend-75
+	background-color min75col
+	color #ffffff
+	border-bottom 2px solid #652a47
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+	@media (max-width:768px)
+		background-color min75col
+		color white
+
+.textlegend-90
+	background-color min90col
+	color #000000
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+	pointer arrow
+
+.textlegend-100
+	background-color min100col
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+
+.textlegend-110
+	background-color min110col
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+
+.textlegend-125
+	background-color min125col
+	color #000000
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+
+.textlegend-600
+	background-color min600col
+	color #ffffff
+	border none
+	padding-bottom 4px
+	margin 0
+	border-radius 0px
+
+.textlegend-5perc
+	background-color fivepercgdp
+	color #ffffff
+
+.button
+	border-bottom 2px solid #652a47
+	border-radius 4px
+	padding-bottom 2px
+.y-axis .tick text
+	font-size 2em
+	alignment-baseline middle
+	fill-opacity 0
+
+.y-axis .tick text tspan.countryname
+	font-size 12px
+	font-family 'Roboto'
+	fill-opacity 1
+	@media (max-width: 375px)
+		font-size 10px
+		font-weight 500
+
+text.countryname
+	font-size 16px
+	font-weight 400
+	font-family 'Roboto'
+
+.annotation
+	font-size 0.7em
+
+div.tooltip
+	position absolute
+	text-align center
+	padding 4px
+	width 120px
+	font 12px sans-serif
+	border 1px solid white
+	border-radius 3px
+	pointer-events none
+	box-shadow 1px 1px 1px 0px #333
+
+#legend-ul {
+  list-style: none;
+}
+
+li.custom-li {
+  padding-left: 2em;
+  text-indent: -2em;
+  padding-right: 5px;
+  line-height: 1.5em
+}
+
+li.region-li:before
+	content: "○ "
+
+li.country-li:before
+	content: "□ "
+	font-size 1.5rem
+
+li.capital-li:before
+	content: "⦿ "
+	font-size 1.3rem
+
+ol
+	line-height 1.7
+
+.animation-container
+	width 100%
+	.countryname
+		display none
+
+.animation-title
+	text-align center
+	margin-bottom 1.5em
+	font-weight 600
+	text-transform uppercase
+	font-size 14px
+	letter-spacing .5px
+	margin-top 4rem
+	@media (max-width: 500px)
+		letter-spacing 0px
+		text-transform none
+
+.methods
+	background-color #f1f1f1
+	margin-bottom 4rem
