@@ -1,15 +1,16 @@
 {
-	"title": "Title Case Hed Goes Here",
-	"description": "Sentence case dek goes down here. Modify these in data/meta.json.",
-	"site": "https://site.com",
+	"title": "How long does it take to reach a life saving vaccine in Madagascar?",
+	"description": "The story of rabies exposures and outcomes in Madagascar.",
+	"site": "",
 	"siteName": "",
-	"url": "https://site.com/year/month/name/",
-	"keywords": "tk",
-	"imgFacebook": "https://site.com/year/month/name/assets/social/social-facebook.jpg",
-	"imgTwitter": "https://site.com/year/month/name/assets/social/social-twitter.jpg",
+	"url": "",
+	"keywords": "pep etc.",
+	"imgFacebook": "",
+	"imgTwitter": "",
+	"date": "January 2021",
 	"author": {
-		"name": "",
-		"url": "https://site.com/author/the-pudding-team",
+		"name": "Malavika Rajeev",
+		"url": "",
 		"twitterHandle": ""
 	},
 	"lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis neque sit amet sollicitudin vehicula. Maecenas fringilla mi non lacus mattis elementum. Curabitur dignissim faucibus justo."
