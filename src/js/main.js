@@ -4,7 +4,7 @@ import isMobile from './utils/is-mobile';
 import linkFix from './utils/link-fix';
 import modalSetup from './utils/modal-a11y';
 import graphic from './graphic';
-// import footer from './footer';
+// // import footer from './footer';
 
 const $body = d3.select('body');
 let previousWidth = 0;
@@ -37,11 +37,11 @@ function init() {
   // setup resize event
   window.addEventListener('resize', debounce(resize, 150));
   // setup sticky header menu
-  // setupStickyHeader();
+  // // setupStickyHeader();
   // kick off graphic code
   graphic.init();
   // load footer stories
-  // footer.init();
+  // // footer.init();
 }
 
 init();
