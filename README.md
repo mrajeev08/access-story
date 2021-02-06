@@ -26,9 +26,21 @@ Any changes to the `src/` folder will trigger live reload.
 
 ## Read only folders
 
--docs/ (built by `make github` or make `npm2gh`)
--dist/ (built by `npm run deploy`)
+- docs/ (built by `make github` or make `npm2gh`)
+- dist/ (built by `npm run deploy`)
+- dev/ (built by `npm start`)
 
+## Learning as I go
+- work out of src
+  - assets = data + images + libraries + fonts (i.e. D3) (can get rid of social)
+  - css = style sheets (these get bundled)
+  - html = templates which get pieced together
+    - put sections into story & then put them into index.hbs
+  - js = d3 scripts (also get bundled)
+    - use these with wrapper names per Wattenberger book
+    - resizing
+    - transitions (fullstack)
+    - scrollytelling
 
 ## HTML
 

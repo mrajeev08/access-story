@@ -4,6 +4,8 @@ import isMobile from './utils/is-mobile';
 import linkFix from './utils/link-fix';
 import modalSetup from './utils/modal-a11y';
 import graphic from './graphic';
+import drawworld from './drawworld';
+
 // // import footer from './footer';
 
 const $body = d3.select('body');
@@ -15,7 +17,7 @@ function resize() {
   const width = $body.node().offsetWidth;
   if (previousWidth !== width) {
     previousWidth = width;
-    graphic.resize();
+    drawworld.resize();
   }
 }
 
@@ -39,7 +41,7 @@ function init() {
   // setup sticky header menu
   // // setupStickyHeader();
   // kick off graphic code
-  graphic.init();
+  drawworld.init();
   // load footer stories
   // // footer.init();
 }
