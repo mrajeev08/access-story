@@ -4,10 +4,9 @@ async function init() {
 
   // 1. Access data
 
-  const countryShapes = await d3.json("assets/data/countries.son")
+  const countryShapes = await d3.json("assets/data/countries.json")
   const dataset = await d3.csv("assets/data/burden_2010.csv")
 
-  const countryNameAccessor = d => d.properties["ADMIN"]
   const countryIdAccessor = d => d.properties["ISO_A3"]
 
   const metric = "deaths_per_100k"
@@ -65,7 +64,7 @@ async function init() {
   const maxChange = d3.max([metricValueExtent[0], metricValueExtent[1]])
   const colorScale = d3.scaleLinear()
       .domain([0, maxChange])
-      .range(["#EEEEEE", "indigo"])
+      .range(["#EEEEEE", "darkred"])
     
   // 5. Draw data
   const countries = bounds.selectAll(".country")
@@ -106,9 +105,9 @@ async function init() {
   const legendGradientId = "legend-gradient"
   const gradient = defs.append("linearGradient")
       .attr("id", legendGradientId)
-    .selectAll("stop")
-    .data(colorScale.range())
-    .enter().append("stop")
+      .selectAll("stop")
+      .data(colorScale.range())
+      .enter().append("stop")
       .attr("stop-color", d => d)
       .attr("offset", (d, i) => `${
         i * 100 / 2 // 2 is one less than our array's length
@@ -135,39 +134,24 @@ async function init() {
       .text(`${d3.format(".1f")(0)}`)
       .style("text-anchor", "end")
   
+  const listenerRect = worldmap.append('rect')
+    .attr('class', 'listener-rect')
+    .attr('x', 0)
+    .attr('y', -dimensions.margin.top)
+    .attr('width', dimensions.width)
+    .attr('height', dimensions.height)
+    .style('opacity', 0);
+  
+  const zoom = d3.zoom()
+    .on('zoom', zoomed);
+  
+  listenerRect.call(zoom);
 
-  // 7. Set up interactions
-
-  countries.on("mouseenter", onMouseEnter)
-      .on("mouseleave", onMouseLeave)
-
-  const tooltip = d3.select("#tooltip")
-  function onMouseEnter(datum) {
-    tooltip.style("opacity", 1)
-
-    const metricValue = metricDataByCountry[countryIdAccessor(datum)]
-
-    tooltip.select("#country")
-        .text(countryNameAccessor(datum))
-
-    tooltip.select("#value")
-        .text(`${d3.format(",.2f")(metricValue || 0)}`)
-
-    const [centerX, centerY] = pathGenerator.centroid(datum)
-
-    const x = centerX + dimensions.margin.left
-    const y = centerY + dimensions.margin.top
-
-    tooltip.style("transform", `translate(`
-      + `calc( -50% + ${x}px),`
-      + `calc(-100% + ${y}px)`
-      + `)`)
-
+  function zoomed() { 
+    var transform = d3.event.transform; 
+    worldmap.attr('transform', transform.toString()); 
   }
-
-  function onMouseLeave() {
-    tooltip.style("opacity", 0)
-  }
+  
 }
 
 export default {resize, init };

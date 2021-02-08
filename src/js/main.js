@@ -5,6 +5,7 @@ import linkFix from './utils/link-fix';
 import modalSetup from './utils/modal-a11y';
 import graphic from './graphic';
 import drawworld from './drawworld';
+import drawmada from './drawmada'
 
 // // import footer from './footer';
 
@@ -18,16 +19,7 @@ function resize() {
   if (previousWidth !== width) {
     previousWidth = width;
     drawworld.resize();
-  }
-}
-
-function setupStickyHeader() {
-  const $header = $body.select('header');
-  if ($header.classed('is-sticky')) {
-    const $menu = $body.select('#slide__menu');
-    const $toggle = $body.select('.header__toggle');
-
-    modalSetup($toggle, $toggle, $header, $menu, 'a, button, .logo', true);
+    drawmada.resize();
   }
 }
 
@@ -42,6 +34,7 @@ function init() {
   // // setupStickyHeader();
   // kick off graphic code
   drawworld.init();
+  drawmada.init();
   // load footer stories
   // // footer.init();
 }
