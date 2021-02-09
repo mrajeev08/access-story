@@ -34,8 +34,8 @@ async function init() {
   const sphere = ({type: "Sphere"})
   
   const projection = d3.geoMercator()
-    .center([-5, 47])                // GPS of location to zoom on
-    .scale(980)                       // This is like the zoom
+    .center([42, -17])                 // GPS of location to zoom on [lat, long]
+    .scale(100)                      // This is like the zoom
 
   const pathGenerator = d3.geoPath(projection)
   const [[x0, y0], [x1, y1]] = pathGenerator.bounds(sphere)
@@ -44,6 +44,8 @@ async function init() {
   dimensions.height = dimensions.boundedHeight
     + dimensions.margin.top
     + dimensions.margin.bottom
+
+  projection.fitSize([dimensions.boundedWidth, dimensions.boundedHeight], countryShapes)
 
   // 3. Draw canvas
 

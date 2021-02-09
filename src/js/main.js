@@ -6,6 +6,7 @@ import modalSetup from './utils/modal-a11y';
 import graphic from './graphic';
 import drawworld from './drawworld';
 import drawmada from './drawmada'
+import worldscatter from './worldscatter'
 
 // // import footer from './footer';
 
@@ -20,6 +21,8 @@ function resize() {
     previousWidth = width;
     drawworld.resize();
     drawmada.resize();
+    worldscatter.init();
+
   }
 }
 
@@ -35,6 +38,7 @@ function init() {
   // kick off graphic code
   drawworld.init();
   drawmada.init();
+  worldscatter.init();
   // load footer stories
   // // footer.init();
 }

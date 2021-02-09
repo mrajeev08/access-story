@@ -133,7 +133,7 @@ async function init() {
       .attr("y", legendHeight / 2)
       .text(`${d3.format(".1f")(0)}`)
       .style("text-anchor", "end")
-  
+ /*  
   const listenerRect = worldmap.append('rect')
     .attr('class', 'listener-rect')
     .attr('x', 0)
@@ -150,7 +150,7 @@ async function init() {
   function zoomed() { 
     var transform = d3.event.transform; 
     worldmap.attr('transform', transform.toString()); 
-  }
+  } */
   
 }
 
