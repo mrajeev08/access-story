@@ -7,6 +7,7 @@ import graphic from './graphic';
 import drawworld from './drawworld';
 import drawmada from './drawmada'
 import worldscatter from './worldscatter'
+import packex from './pack'
 
 // // import footer from './footer';
 
@@ -39,6 +40,7 @@ function init() {
   drawworld.init();
   drawmada.init();
   worldscatter.init();
+  packex.init();
   // load footer stories
   // // footer.init();
 }

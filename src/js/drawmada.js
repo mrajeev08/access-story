@@ -5,19 +5,15 @@ async function init() {
   // 1. Access data
 
   const countryShapes = await d3.json("assets/data/mada.json")
-  const dataset = await d3.csv("assets/data/burden_2010.csv")
 
-  const countryIdAccessor = d => d.properties["ISO_A3"]
-
-  const metric = "deaths_per_100k"
-
-  let metricDataByCountry = {}
-  dataset.forEach(d => {
-    metricDataByCountry[d["iso"]] = +d["deaths_per_100k"] || 0
+  const dataset = await d3.csv("assets/data/ctar_metadata.csv", function(d){
+    return {
+      long: parseFloat(d.long),
+      lat: parseFloat(d.lat)
+    }
   })
   
   // 2. Create chart dimensions
-
   let dimensions = {
     width: window.innerWidth * 0.9,
     margin: {
@@ -60,29 +56,29 @@ async function init() {
       }px, ${
         dimensions.margin.top
       }px)`)
-
-  // 4. Create scales
-
-  const metricValues = Object.values(metricDataByCountry)
-  const metricValueExtent = d3.extent(metricValues)
-  const maxChange = d3.max([metricValueExtent[0], metricValueExtent[1]])
-  const colorScale = d3.scaleLinear()
-      .domain([0, maxChange])
-      .range(["#EEEEEE", "darkred"])
     
-  // 5. Draw data
+  // 4. Draw data
   const countries = bounds.selectAll(".country")
     .data(countryShapes.features)
     .enter().append("path")
       .attr("class", "country")
       .attr("d", pathGenerator)
       .attr("stroke-width", 0.1)
-      .attr("fill", d => {
-        const metricValue = metricDataByCountry[countryIdAccessor(d)]
-        
-        if (typeof metricValue == "undefined") return "#e2e6e9"
-        return colorScale(metricValue)
+      .attr("fill", "grey")
+  
+
+    // add points to mada
+    madamap.selectAll("circle")
+      .data(dataset)
+      .enter()
+      .append("circle")
+      .each(function(d){
+        d.p1 = projection([d.long, d.lat]);
       })
+      .attr("cx", function (d) { return d.p1[0]; })
+		  .attr("cy",  function (d) { return d.p1[1]; })
+      .attr("r", "2px")
+      .attr("fill", "darkred")
   
 }
 
