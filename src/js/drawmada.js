@@ -4,14 +4,9 @@ async function init() {
 
   // 1. Access data
 
-  const countryShapes = await d3.json("assets/data/mada.json")
-
-  const dataset = await d3.csv("assets/data/ctar_metadata.csv", function(d){
-    return {
-      long: parseFloat(d.long),
-      lat: parseFloat(d.lat)
-    }
-  })
+  const countryShapes = await d3.json("assets/data/mada_districts.geojson")
+    
+  const dataset = await d3.json("assets/data/ctar_pts.geojson")
   
   // 2. Create chart dimensions
   let dimensions = {
@@ -56,7 +51,7 @@ async function init() {
       }px, ${
         dimensions.margin.top
       }px)`)
-    
+  
   // 4. Draw data
   const countries = bounds.selectAll(".country")
     .data(countryShapes.features)
@@ -69,11 +64,11 @@ async function init() {
 
     // add points to mada
     madamap.selectAll("circle")
-      .data(dataset)
+      .data(dataset.features)
       .enter()
       .append("circle")
       .each(function(d){
-        d.p1 = projection([d.long, d.lat]);
+        d.p1 = projection(d.geometry.coordinates);
       })
       .attr("cx", function (d) { return d.p1[0]; })
 		  .attr("cy",  function (d) { return d.p1[1]; })

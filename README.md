@@ -41,7 +41,11 @@ Any changes to the `src/` folder will trigger live reload.
     - resizing
     - transitions (fullstack)
     - scrollytelling
-
+  
+  # Probably the best scrollama example (neatest)
+  https://github.com/the-pudding/police_misconduct_pudding/blob/c7893ebaa7b7f898e7a7e7d0396ddabdf68256f9/src/js/graphic.js#L948
+  *Clean code (for each index make a function that handlestepenter calls & dependent on whether scrolling up or down)*
+  
 ## HTML
 
 **Where it goes:** `src/html/partials/story/`.

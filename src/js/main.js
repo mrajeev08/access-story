@@ -3,11 +3,8 @@ import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
 import linkFix from './utils/link-fix';
 import modalSetup from './utils/modal-a11y';
-import graphic from './graphic';
 import drawworld from './drawworld';
-import drawmada from './drawmada'
-import worldscatter from './worldscatter'
-import packex from './pack'
+import drawmada from './drawmada';
 
 // // import footer from './footer';
 
@@ -22,7 +19,6 @@ function resize() {
     previousWidth = width;
     drawworld.resize();
     drawmada.resize();
-    worldscatter.init();
 
   }
 }
@@ -39,8 +35,6 @@ function init() {
   // kick off graphic code
   drawworld.init();
   drawmada.init();
-  worldscatter.init();
-  packex.init();
   // load footer stories
   // // footer.init();
 }

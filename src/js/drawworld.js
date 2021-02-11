@@ -4,16 +4,14 @@ async function init() {
 
   // 1. Access data
 
-  const countryShapes = await d3.json("assets/data/countries.json")
-  const dataset = await d3.csv("assets/data/burden_2010.csv")
+  const countryShapes  = await d3.json("assets/data/countries.json")
+  const countryIdAccessor = d => d.properties["adm0_a3"]
 
-  const countryIdAccessor = d => d.properties["ISO_A3"]
-
-  const metric = "deaths_per_100k"
-
+  const dataset = await d3.json("assets/data/garc_data.json")
+  
   let metricDataByCountry = {}
   dataset.forEach(d => {
-    metricDataByCountry[d["iso"]] = +d["deaths_per_100k"] || 0
+    metricDataByCountry[d["iso"]] = +d["deaths"] || 0
   })
   
   // 2. Create chart dimensions
@@ -62,10 +60,12 @@ async function init() {
   const metricValues = Object.values(metricDataByCountry)
   const metricValueExtent = d3.extent(metricValues)
   const maxChange = d3.max([metricValueExtent[0], metricValueExtent[1]])
+  
   const colorScale = d3.scaleLinear()
       .domain([0, maxChange])
       .range(["#EEEEEE", "darkred"])
-    
+  
+
   // 5. Draw data
   const countries = bounds.selectAll(".country")
     .data(countryShapes.features)
@@ -74,8 +74,7 @@ async function init() {
       .attr("d", pathGenerator)
       .attr("stroke-width", 0.1)
       .attr("fill", d => {
-        const metricValue = metricDataByCountry[countryIdAccessor(d)]
-        
+        const metricValue = metricDataByCountry[countryIdAccessor(d)];
         if (typeof metricValue == "undefined") return "#e2e6e9"
         return colorScale(metricValue)
       })
@@ -154,4 +153,4 @@ async function init() {
   
 }
 
-export default {resize, init };
+export default {resize, init};
